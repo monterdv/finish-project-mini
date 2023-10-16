@@ -1,0 +1,41 @@
+<div class="container mt-5">
+    {{#if successMessage}}
+    <div class="alert alert-success alert-dismissible fade show">
+        {{successMessage}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {{/if}}
+    <h1>Product List</h1>
+    <a class="btn btn-primary" style="" href="/products/new">Add Products</a>
+    <div class="mt-4">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each products}}
+                <tr>
+                    <td><img class="list-img" src="{{this.imagePath}}" alt=""></td>
+                    <td>{{this.title}}</td>
+                    <td>{{this.description}}</td>
+                    <td>${{this.price}}</td>
+                    <td>
+                        <a class="btn btn-success" href="/products/{{this._id}}/edit">Edit</a>
+                        <form method="POST" action="/products/{{this._id}}?_method=DELETE">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
